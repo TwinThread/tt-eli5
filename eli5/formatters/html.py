@@ -6,7 +6,6 @@ from typing import List, Optional, Tuple
 import numpy as np
 from jinja2 import Environment, PackageLoader
 
-from eli5 import _graphviz
 from eli5.base import (Explanation, TargetExplanation, FeatureWeights,
                        FeatureWeight)
 from eli5.utils import max_or_0
@@ -333,10 +332,7 @@ def _format_single_feature(feature, weight, hl_spaces):
 
 def _format_decision_tree(treedict):
     # type: (...) -> str
-    if treedict.graphviz and _graphviz.is_supported():
-        return _graphviz.dot2svg(treedict.graphviz)
-    else:
-        return tree2text(treedict)
+    return tree2text(treedict)
 
 
 def html_escape(text):

@@ -37,7 +37,6 @@ setup(
         'scipy',
         'six',
         'scikit-learn >= 0.20',
-        'graphviz',
         'tabulate>=0.7.7',
     ],
     python_requires=">=3.6",

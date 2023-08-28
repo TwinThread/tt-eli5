@@ -189,18 +189,16 @@ class TransitionFeatureWeights(object):
 class TreeInfo(object):
     """ Information about the decision tree. :criterion: is the name of
     the function to measure the quality of a split, :tree: holds all nodes
-    of the tree, and :graphviz: is the tree rendered in graphviz .dot format.
+    of the tree.
     """
     def __init__(self,
                  criterion,  # type: str
                  tree,  # type: NodeInfo
-                 graphviz,  # type: str
                  is_classification, # type: bool
                  ):
         # type: (...) -> None
         self.criterion = criterion
         self.tree = tree
-        self.graphviz = graphviz
         self.is_classification = is_classification
 
 

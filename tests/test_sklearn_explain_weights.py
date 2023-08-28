@@ -64,7 +64,6 @@ from sklearn.feature_selection import SelectKBest
 from sklearn.multiclass import OneVsRestClassifier
 import pytest
 
-from eli5 import _graphviz
 from eli5 import explain_weights, explain_weights_sklearn
 from eli5.sklearn.utils import has_intercept
 from eli5.sklearn import InvertableHashingVectorizer
@@ -402,10 +401,7 @@ def assert_tree_classifier_explained(clf, vec, target_names, **explain_kwargs):
             assert 'more features' in expl or 'more &hellip;' in expl
 
     if isinstance(clf, (DecisionTreeClassifier, OneVsRestClassifier)):
-        if _graphviz.is_supported():
-            assert '<svg' in expl_html
-        else:
-            assert '<svg' not in expl_html
+        assert '<svg' not in expl_html
 
     assert res == get_res()
 

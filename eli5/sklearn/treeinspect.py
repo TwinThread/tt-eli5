@@ -8,14 +8,13 @@ and provides a way to output result in text-based format.
 from __future__ import absolute_import, division
 
 from sklearn.base import ClassifierMixin
-from sklearn.tree import _tree, export_graphviz
+from sklearn.tree import _tree
 
 from eli5.base import TreeInfo, NodeInfo
 
 
 def get_tree_info(decision_tree,
-                  feature_names=None,
-                  **export_graphviz_kwargs):
+                  feature_names=None):
     # type: (...) -> TreeInfo
     """
     Convert DecisionTreeClassifier or DecisionTreeRegressor
@@ -24,16 +23,8 @@ def get_tree_info(decision_tree,
     return TreeInfo(
         criterion=decision_tree.criterion,
         tree=_get_root_node_info(decision_tree, feature_names),
-        graphviz=tree2dot(decision_tree,
-                          feature_names=feature_names,
-                          **export_graphviz_kwargs),
         is_classification=isinstance(decision_tree, ClassifierMixin),
     )
-
-
-def tree2dot(decision_tree, **export_graphviz_kwargs):
-    return export_graphviz(decision_tree, out_file=None,
-                           **export_graphviz_kwargs)
 
 
 def _get_root_node_info(decision_tree, feature_names=None):

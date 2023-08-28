@@ -333,8 +333,7 @@ def explain_decision_tree(estimator,
                           targets=None,  # ignored
                           feature_names=None,
                           feature_re=None,
-                          feature_filter=None,
-                          **export_graphviz_kwargs):
+                          feature_filter=None):
     """
     Return an explanation of a decision tree.
 
@@ -361,12 +360,10 @@ def explain_decision_tree(estimator,
     feature_importances = get_feature_importances_filtered(
         estimator.feature_importances_, feature_names, flt_indices, top)
 
-    export_graphviz_kwargs.setdefault("proportion", True)
     tree_info = get_tree_info(
         estimator,
         feature_names=tree_feature_names,
-        class_names=target_names,
-        **export_graphviz_kwargs)
+        class_names=target_names)
 
     return Explanation(
         feature_importances=feature_importances,
